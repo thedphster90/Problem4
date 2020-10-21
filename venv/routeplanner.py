@@ -7,6 +7,17 @@ def heuristic(start, end):
     x = math.sqrt((start[0]-end[0])**2 + (start[1]-end[1])**2)
     return x
 
+def calc_path(prevnodes, start, end):
+
+    finalpath = [end]
+    node = end
+    while prevnodes[node] != None:
+        finalpath.append(prevnodes[node])
+        node = prevnodes[node]
+    finalpath.reverse()
+
+    return finalpath
+
 #note, found a sample online to base some of my code on, in one of the knowledge portal questions.
 def shortest_path(M, start, end):
     #use a priority queue to keep track of all the nodes that need to be considered for each round
@@ -43,20 +54,10 @@ def shortest_path(M, start, end):
                 dist_comp[overall_cost] = node
 
 
-
-    return calc_path(prevnodes, start, end)
-
-
-def calc_path(prevnodes, start, end):
-
-    finalpath = [end]
-    node = end
-    while prevnodes[node] != None:
-        finalpath.append(prevnodes[node])
-        node = prevnodes[node]
-    finalpath.reverse()
-
+    finalpath = calc_path(prevnodes, start, end)
     return finalpath
+
+
 
 
 
